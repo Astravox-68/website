@@ -1280,3 +1280,7 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+
+:root {
+  --deployment-fingerprint: cf-pages-assets-20260807b;
+}
