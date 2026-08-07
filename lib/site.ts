@@ -7,7 +7,7 @@ export const siteConfig = {
   whatsapp: "",
   address: "",
   serviceArea: "Glasgow, the wider UK and international clients",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://astravox.co.uk",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://astravoxtech.uk",
   bookingUrl: "",
   linkedin: "",
   instagram: "",
