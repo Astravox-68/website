@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, copyFile } from "node:fs/promises";
+import { cp, mkdir, rm, copyFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const outputDir = "dist/pages";
@@ -12,5 +12,26 @@ await rm("dist/server/wrangler.json", { force: true });
 await rm(join(outputDir, "wrangler.json"), { force: true });
 await rm(".wrangler/deploy/config.json", { force: true });
 await copyFile(join(outputDir, "index.js"), join(outputDir, "_worker.js"));
+await writeFile(
+  join(outputDir, "_routes.json"),
+  JSON.stringify(
+    {
+      version: 1,
+      include: ["/*"],
+      exclude: [
+        "/assets/*",
+        "/brand-poster.png",
+        "/education-students.png",
+        "/favicon.svg",
+        "/file.svg",
+        "/globe.svg",
+        "/og.png",
+        "/window.svg",
+      ],
+    },
+    null,
+    2,
+  ) + "\n",
+);
 
 console.log(`Cloudflare Pages output prepared at ${outputDir}`);
