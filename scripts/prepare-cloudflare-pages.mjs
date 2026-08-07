@@ -10,6 +10,7 @@ await cp("dist/client", outputDir, { recursive: true });
 await cp("dist/server", outputDir, { recursive: true });
 await rm("dist/server/wrangler.json", { force: true });
 await rm(join(outputDir, "wrangler.json"), { force: true });
+await rm(".wrangler/deploy/config.json", { force: true });
 await copyFile(join(outputDir, "index.js"), join(outputDir, "_worker.js"));
 
 console.log(`Cloudflare Pages output prepared at ${outputDir}`);
