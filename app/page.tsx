@@ -24,6 +24,11 @@ export default function Home() {
               supports students planning international study, and helps brands
               grow with practical marketing.
             </p>
+            <div className="home-trust-strip" aria-label="Astravox service signals">
+              <span>Glasgow-based</span>
+              <span>UK and international clients</span>
+              <span>Technology, education and digital growth</span>
+            </div>
           </div>
           <div className="pathway-grid" aria-label="Astravox divisions">
             <Link className="pathway-card pathway-tech" href="/technology">

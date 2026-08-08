@@ -15,22 +15,23 @@ export default function ContactPage() {
       <PageBanner
         eyebrow="Contact"
         title="Start a focused conversation"
-        text="Tell Astravox what you need help with. The form avoids sensitive document uploads and is ready for email or CRM integration."
+        text="Tell Astravox what you need help with. Use the form or email info@astravoxtech.uk and we will respond with the right next step."
         crumbs={[["Contact"]]}
       />
       <section className="section">
         <div className="container grid-2">
           <div>
-            <SectionHeading eyebrow="Enquiry" title="Choose the right starting point" text="Use the message box to explain your goal, timeline and what you have already tried. Astravox will respond once contact delivery is configured." />
+            <SectionHeading eyebrow="Enquiry" title="Choose the right starting point" text="Use the message box to explain your goal, timeline and what you have already tried. You can also email the team directly." />
             <div className="card" style={{ padding: "1.4rem" }}>
-              <h2 className="h3">Business information still needed</h2>
+              <h2 className="h3">Contact details</h2>
               <ul className="list">
-                <li>Business email address</li>
-                <li>Phone or WhatsApp number</li>
-                <li>Registered company details if applicable</li>
-                <li>Public office address only if approved for publication</li>
+                <li>
+                  Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+                </li>
+                <li>Service area: {siteConfig.serviceArea}</li>
+                <li>Technology, education and digital growth enquiries welcome</li>
+                <li>Please do not send sensitive documents until requested</li>
               </ul>
-              <p className="muted">Current service area: {siteConfig.serviceArea}.</p>
             </div>
           </div>
           <ContactForm />

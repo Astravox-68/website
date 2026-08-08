@@ -3,17 +3,17 @@ import { PageBanner } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "Terms and Conditions",
-  description: "Draft Astravox website terms requiring legal review before production use.",
+  description: "Astravox website terms for information, enquiries and services.",
   alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
   return (
     <>
-      <PageBanner eyebrow="Terms" title="Terms and Conditions" text="Draft terms for Astravox website use and service enquiries. Final wording requires legal review." crumbs={[["Terms and Conditions"]]} />
+      <PageBanner eyebrow="Terms" title="Terms and Conditions" text="Terms for using the Astravox website and submitting service enquiries." crumbs={[["Terms and Conditions"]]} />
       <section className="section">
         <div className="container legal">
-          <p><strong>Legal review required:</strong> These draft terms are not a substitute for professional legal advice.</p>
+          <p>These terms explain the general basis for website information and enquiries. Any paid service should be agreed separately in writing.</p>
           <h2>Website information</h2>
           <p>Website content is provided for general information and does not create a client relationship until services are agreed in writing.</p>
           <h2>Technology services</h2>

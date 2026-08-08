@@ -386,6 +386,25 @@ img {
   max-width: 760px;
 }
 
+.home-trust-strip {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+
+.home-trust-strip span {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 0.55rem 0.8rem;
+}
+
 .hero-grid {
   align-items: center;
   display: grid;

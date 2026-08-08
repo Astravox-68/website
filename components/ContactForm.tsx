@@ -56,7 +56,7 @@ export function ContactForm({ kind = "general" }: { kind?: FormKind }) {
       <button className="button button-primary" disabled={status === "loading"} type="submit">
         {status === "loading" ? "Sending..." : "Send Enquiry"}
       </button>
-      {status === "success" && <p className="muted">Thank you. Your enquiry has been received for follow-up setup.</p>}
+      {status === "success" && <p className="muted">Thank you. Your enquiry has been received.</p>}
       {status === "error" && <p className="muted">Something went wrong. Please try again.</p>}
     </form>
   );

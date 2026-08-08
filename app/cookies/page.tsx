@@ -3,7 +3,7 @@ import { PageBanner } from "@/components/Sections";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: "Draft Astravox cookie policy covering necessary, analytics and marketing cookies.",
+  description: "Astravox cookie policy covering necessary, analytics and marketing cookies.",
   alternates: { canonical: "/cookies" },
 };
 
@@ -13,7 +13,7 @@ export default function CookiesPage() {
       <PageBanner eyebrow="Cookies" title="Cookie Policy" text="Astravox uses necessary cookies by default and loads optional analytics or marketing tools only after consent." crumbs={[["Cookie Policy"]]} />
       <section className="section">
         <div className="container legal">
-          <p><strong>Legal review required:</strong> Confirm the final cookie list once analytics, clarity and any advertising tools are connected.</p>
+          <p>Astravox uses necessary cookies for site operation and only loads optional analytics or marketing tools after consent.</p>
           <h2>Necessary cookies</h2>
           <p>Necessary cookies support basic site operation and remember cookie choices.</p>
           <h2>Analytics cookies</h2>

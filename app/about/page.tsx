@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FinalCTA, PageBanner, SectionHeading, TrustGrid } from "@/components/Sections";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -27,9 +28,15 @@ export default function AboutPage() {
               client&apos;s goals, responsibilities and constraints.
             </p>
             <p className="muted">
-              The company details, verified testimonials, accreditations and
-              partner information should be added once confirmed. Until then,
-              the site avoids claims that need proof.
+              The brand brings three services together because many people need
+              connected support at the same moment: a business may need a
+              better website before marketing it, a founder may need software
+              and growth planning together, and students or families need clear
+              guidance from a team that values careful communication.
+            </p>
+            <p className="muted">
+              For enquiries, contact{" "}
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
             </p>
           </div>
           <TrustGrid />

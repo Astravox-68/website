@@ -25,6 +25,9 @@ export function Footer() {
             through one clear UK-based brand.
           </p>
           <p className="muted">Service area: {siteConfig.serviceArea}.</p>
+          <p className="muted">
+            Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          </p>
         </div>
         {Object.values(divisions).map((division) => (
           <div key={division.key}>
@@ -50,9 +53,9 @@ export function Footer() {
       </div>
       <div className="container" style={{ marginTop: "2.4rem" }}>
         <p className="muted">
-          © {siteConfig.copyrightYear} Astravox. Company registration, registered
-          office, phone, email and social links can be added in the site
-          configuration when confirmed.
+          © {siteConfig.copyrightYear} Astravox. Glasgow-based support for
+          technology, education and digital growth enquiries. For contact, email{" "}
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
         </p>
       </div>
     </footer>
