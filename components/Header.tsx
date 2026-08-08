@@ -13,7 +13,7 @@ export function Header() {
   };
 
   return (
-    <header className="site-header" data-deploy="cf-pages-assets-20260807b">
+    <header className="site-header" data-deploy="cf-pages-copy-20260808">
       <div className="container">
         <nav className="nav" aria-label="Main navigation">
           <Link className="logo" href="/" aria-label="Astravox home">
