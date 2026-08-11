@@ -27,10 +27,10 @@ export function Footer() {
           </p>
           <p className="muted">Service area: {siteConfig.serviceArea}.</p>
           <p className="muted">
-            Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            General enquiries: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           </p>
           <p className="muted">
-            Careers: <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>
+            Recruitment: <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>
           </p>
         </div>
         {Object.values(divisions).map((division) => (

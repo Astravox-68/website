@@ -6,7 +6,7 @@ const recipientByKind: Record<string, string> = {
   technology: "info@astravoxtech.uk",
   education: "info@astravoxtech.uk",
   "digital-growth": "info@astravoxtech.uk",
-  careers: "info@astravoxtech.uk",
+  careers: "careers@astravoxtech.uk",
 };
 
 const subjectByKind: Record<string, string> = {
@@ -87,15 +87,17 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       console.error("Astravox enquiry email failed", await response.text());
+      const fallbackEmail = kind === "careers" ? "careers@astravoxtech.uk" : "info@astravoxtech.uk";
       return NextResponse.json(
-        { error: "Email delivery failed. Please email info@astravoxtech.uk directly." },
+        { error: `Email delivery failed. Please email ${fallbackEmail} directly.` },
         { status: 502 },
       );
     }
   } else {
     console.info("Astravox enquiry received without email provider", enquiry);
+    const fallbackEmail = kind === "careers" ? "careers@astravoxtech.uk" : "info@astravoxtech.uk";
     return NextResponse.json(
-      { error: "Email delivery is being configured. Please email info@astravoxtech.uk directly." },
+      { error: `Email delivery is being configured. Please email ${fallbackEmail} directly.` },
       { status: 503 },
     );
   }

@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "",
   registrationNumber: "",
   email: "info@astravoxtech.uk",
-  careersEmail: "info@astravoxtech.uk",
+  careersEmail: "careers@astravoxtech.uk",
   phone: "",
   whatsapp: "",
   address: "",

@@ -9,8 +9,20 @@ const fields = {
   technology: ["Name", "Business email", "Company", "Project type", "Estimated budget range", "Expected timeline"],
   education: ["Student name", "Email", "Current country", "Current qualification", "Intended study level", "Preferred destination", "Intended intake"],
   "digital-growth": ["Name", "Business email", "Company", "Website", "Main marketing goal", "Required service", "Approximate monthly budget range"],
-  careers: ["Full Name", "Email", "Phone", "LinkedIn URL", "GitHub/Portfolio URL"],
+  careers: ["First Name", "Last Name", "Email", "Phone", "Country", "LinkedIn Profile", "GitHub / Portfolio"],
 };
+
+const recipientByKind: Record<FormKind, string> = {
+  general: "info@astravoxtech.uk",
+  technology: "info@astravoxtech.uk",
+  education: "info@astravoxtech.uk",
+  "digital-growth": "info@astravoxtech.uk",
+  careers: "careers@astravoxtech.uk",
+};
+
+function fieldId(label: string) {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 export function ContactForm({
   kind = "general",
@@ -60,7 +72,7 @@ export function ContactForm({
         setStatus("error");
       }
     } catch {
-      setErrorMessage("Network error. Please email info@astravoxtech.uk if the form does not send.");
+      setErrorMessage(`Network error. Please email ${recipientByKind[kind]} if the form does not send.`);
       setStatus("error");
     }
   }
@@ -71,8 +83,8 @@ export function ContactForm({
       <div className="grid-2">
         {fields[kind].map((label) => (
           <div className="field" key={label}>
-            <label htmlFor={label.toLowerCase().replaceAll(" ", "-")}>{label}</label>
-            <input id={label.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-")} name={label} required={label.includes("Name") || label.includes("Email")} />
+            <label htmlFor={fieldId(label)}>{label}</label>
+            <input id={fieldId(label)} name={label} required={label.includes("Name") || label.includes("Email")} />
           </div>
         ))}
       </div>
@@ -80,6 +92,15 @@ export function ContactForm({
         <label htmlFor={`${kind}-message`}>{messageLabel}</label>
         <textarea id={`${kind}-message`} name="Message" required />
       </div>
+      {kind === "careers" && (
+        <div className="field">
+          <label>CV Upload</label>
+          <p className="muted">
+            Please email your CV to{" "}
+            <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
+          </p>
+        </div>
+      )}
       <label className="check">
         <input name="Consent" required type="checkbox" /> I agree that Astravox
         can use my details to respond to this enquiry. I will not submit highly
@@ -90,14 +111,14 @@ export function ContactForm({
       </button>
       {status === "success" && (
         <p className="muted">
-          Thank you. Your enquiry has been sent to info@astravoxtech.uk.
+          Thank you. Your enquiry has been sent to {recipientByKind[kind]}.
         </p>
       )}
       {status === "error" && <p className="muted">{errorMessage}</p>}
       {kind === "careers" && (
         <p className="muted">
           Please email your CV separately to{" "}
-          <a href="mailto:info@astravoxtech.uk">info@astravoxtech.uk</a>.
+          <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
         </p>
       )}
     </form>

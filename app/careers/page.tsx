@@ -5,50 +5,49 @@ import { siteConfig } from "@/lib/site";
 
 const vacancy = {
   title: "Mobile Software Engineer",
-  location: "Remote – United Kingdom",
+  location: "Remote (United Kingdom)",
   employmentType: "Part-time",
   hours: "20 hours per week",
   salary: "£18.50–£22.00 per hour",
   responsibilities: [
-    "Design and develop Android applications using Kotlin and modern Android technologies.",
-    "Maintain and improve existing mobile applications.",
-    "Build and integrate RESTful APIs.",
-    "Collaborate with designers and other developers.",
-    "Write clean, maintainable and well-tested code.",
-    "Participate in code reviews and technical discussions.",
-    "Troubleshoot and optimise application performance.",
-    "Follow modern software engineering and Agile practices.",
+    "Develop Android applications using Kotlin.",
+    "Build modern UI using Jetpack Compose.",
+    "Maintain existing applications.",
+    "Integrate REST APIs.",
+    "Participate in architecture discussions.",
+    "Write clean, maintainable code.",
+    "Work with Git and Agile methodologies.",
+    "Collaborate with designers and backend developers.",
   ],
   requiredSkills: [
-    "Strong Android development experience using Kotlin.",
-    "Experience with Jetpack Compose or modern Android UI frameworks.",
-    "Understanding of MVVM, Clean Architecture or similar patterns.",
-    "Experience integrating REST APIs.",
-    "Git/version-control experience.",
-    "Strong problem-solving and communication skills.",
+    "Kotlin",
+    "Android SDK",
+    "Jetpack Compose",
+    "MVVM",
+    "REST APIs",
+    "Git",
+    "Problem solving",
+    "Communication skills",
   ],
   desirableSkills: [
-    "iOS or cross-platform mobile development.",
-    "Cloud platforms such as AWS, GCP or Azure.",
-    "Firebase.",
-    "AI/LLM integration.",
-    "SQL, data processing or analytics.",
-    "CI/CD pipelines.",
-  ],
-  offer: [
-    "Fully remote working.",
-    "Flexible working arrangements.",
-    "Opportunity to work on modern software projects.",
-    "Exposure to mobile, cloud, AI and data technologies.",
-    "Professional development opportunities.",
-    "Potential progression to a full-time position as the business grows.",
+    "Flutter",
+    "iOS",
+    "Firebase",
+    "AWS",
+    "Google Cloud",
+    "Docker",
+    "CI/CD",
+    "AI integrations",
+    "Python",
+    "React",
+    "Node.js",
   ],
 };
 
 export const metadata: Metadata = {
   title: "Careers | Astravox Tech",
   description:
-    "Explore career opportunities at Astravox Tech. Join our remote software engineering team and work on modern mobile, cloud and AI-enabled solutions.",
+    "Join Astravox Tech and build innovative software across Android, cloud, AI and modern web technologies.",
   alternates: { canonical: "/careers" },
 };
 
@@ -67,7 +66,7 @@ function ListSection({ title, items }: { title: string; items: string[] }) {
 
 export default function CareersPage() {
   const jobDescription =
-    "Astravox Tech is looking for a Mobile Software Engineer to join our growing engineering team. You will be responsible for designing, developing, testing and maintaining high-quality mobile applications, working primarily with modern Android technologies while contributing to cross-platform solutions where appropriate.";
+    "Join Astravox Tech and help build modern software solutions across mobile, cloud, AI and digital platforms. We are looking for passionate engineers who enjoy solving real-world problems.";
 
   const jobPosting = {
     "@context": "https://schema.org",
@@ -81,8 +80,6 @@ export default function CareersPage() {
       ...vacancy.requiredSkills,
       "Desirable Skills:",
       ...vacancy.desirableSkills,
-      "What We Offer:",
-      ...vacancy.offer,
     ].join("\n"),
     datePosted: "2026-08-11",
     employmentType: "PART_TIME",
@@ -114,8 +111,8 @@ export default function CareersPage() {
     <>
       <PageBanner
         eyebrow="Careers"
-        title="Join Astravox Tech"
-        text="Explore current opportunities to work with Astravox on modern mobile, cloud and AI-enabled software projects."
+        title="Careers at Astravox Tech"
+        text="Join Astravox Tech and help build modern software solutions across mobile, cloud, AI and digital platforms. We are looking for passionate engineers who enjoy solving real-world problems."
         crumbs={[["Careers"]]}
         tone="technology"
       />
@@ -149,10 +146,9 @@ export default function CareersPage() {
 
       <section className="section section-soft">
         <div className="container career-detail-grid">
-          <ListSection title="Key Responsibilities" items={vacancy.responsibilities} />
+          <ListSection title="Responsibilities" items={vacancy.responsibilities} />
           <ListSection title="Required Skills" items={vacancy.requiredSkills} />
           <ListSection title="Desirable Skills" items={vacancy.desirableSkills} />
-          <ListSection title="What We Offer" items={vacancy.offer} />
         </div>
       </section>
 
@@ -162,20 +158,20 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Apply"
               title="Apply for Mobile Software Engineer"
-              text="Complete the form to send your application details to info@astravoxtech.uk. Please email your CV separately."
+              text="Complete the form to send your application details to careers@astravoxtech.uk. Please email your CV separately."
             />
             <div className="card" style={{ padding: "1.4rem" }}>
               <h2 className="h3">CV and recruitment email</h2>
               <p className="muted">
                 The form sends your application details to{" "}
                 <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>.{" "}
-                Please email your CV separately with the subject line "Mobile Software Engineer application".
+                Please email your CV to careers@astravoxtech.uk with the subject line "Mobile Software Engineer application".
               </p>
             </div>
           </div>
           <ContactForm
             kind="careers"
-            messageLabel="Short message / cover note"
+            messageLabel="Cover Letter"
             submitLabel="Submit Application"
           />
         </div>
