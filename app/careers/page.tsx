@@ -162,12 +162,12 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Apply"
               title="Apply for Mobile Software Engineer"
-              text="Send a short note through the form. CV upload is not enabled on this hosting setup, so please email your CV separately."
+              text="Complete the form to open a pre-filled email draft. Review it, attach your CV, and send it to the careers inbox."
             />
             <div className="card" style={{ padding: "1.4rem" }}>
               <h2 className="h3">CV and recruitment email</h2>
               <p className="muted">
-                Please email your CV to{" "}
+                The Apply form opens your email app. Attach your CV there, or email your CV directly to{" "}
                 <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>{" "}
                 with the subject line "Mobile Software Engineer application".
               </p>
