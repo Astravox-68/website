@@ -162,14 +162,14 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Apply"
               title="Apply for Mobile Software Engineer"
-              text="Complete the form to open a pre-filled email draft. Review it, attach your CV, and send it to the careers inbox."
+              text="Complete the form to send your application details to info@astravoxtech.uk. Please email your CV separately."
             />
             <div className="card" style={{ padding: "1.4rem" }}>
               <h2 className="h3">CV and recruitment email</h2>
               <p className="muted">
-                The Apply form opens your email app. Attach your CV there, or email your CV directly to{" "}
+                The form sends your application details to{" "}
                 <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>{" "}
-                with the subject line "Mobile Software Engineer application".
+                Please email your CV separately with the subject line "Mobile Software Engineer application".
               </p>
             </div>
           </div>

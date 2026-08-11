@@ -12,22 +12,6 @@ const fields = {
   careers: ["Full Name", "Email", "Phone", "LinkedIn URL", "GitHub/Portfolio URL"],
 };
 
-const recipientByKind: Record<FormKind, string> = {
-  general: "info@astravoxtech.uk",
-  technology: "info@astravoxtech.uk",
-  education: "info@astravoxtech.uk",
-  "digital-growth": "info@astravoxtech.uk",
-  careers: "info@astravoxtech.uk",
-};
-
-const subjectByKind: Record<FormKind, string> = {
-  general: "Astravox website enquiry",
-  technology: "Astravox Technology enquiry",
-  education: "Astravox Education enquiry",
-  "digital-growth": "Astravox Digital Growth enquiry",
-  careers: "Mobile Software Engineer application",
-};
-
 export function ContactForm({
   kind = "general",
   messageLabel = "Message",
@@ -42,6 +26,7 @@ export function ContactForm({
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("loading");
     setErrorMessage("");
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
@@ -59,15 +44,25 @@ export function ContactForm({
       return;
     }
 
-    const body = Object.entries({ kind, ...data })
-      .filter(([key]) => key !== "website" && key !== "Consent")
-      .map(([key, value]) => `${key}: ${String(value || "").trim() || "-"}`)
-      .join("\n");
-    const mailto = `mailto:${recipientByKind[kind]}?subject=${encodeURIComponent(subjectByKind[kind])}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
-    setStatus("success");
-    window.dispatchEvent(new CustomEvent("astravox:event", { detail: `${kind}_enquiry_started` }));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind, ...data }),
+      });
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+        window.dispatchEvent(new CustomEvent("astravox:event", { detail: `${kind}_enquiry_submitted` }));
+      } else {
+        const result = await response.json().catch(() => null);
+        setErrorMessage(result?.error || "Please check the required fields and try again.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMessage("Network error. Please email info@astravoxtech.uk if the form does not send.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -95,13 +90,13 @@ export function ContactForm({
       </button>
       {status === "success" && (
         <p className="muted">
-          Your email app should open now. Please review the message and press send.
+          Thank you. Your enquiry has been sent to info@astravoxtech.uk.
         </p>
       )}
       {status === "error" && <p className="muted">{errorMessage}</p>}
       {kind === "careers" && (
         <p className="muted">
-          The form opens an email draft. Attach your CV there, or email your application and CV to{" "}
+          Please email your CV separately to{" "}
           <a href="mailto:info@astravoxtech.uk">info@astravoxtech.uk</a>.
         </p>
       )}

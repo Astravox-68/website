@@ -1,6 +1,21 @@
 import { NextResponse } from "next/server";
 
 const recent = new Map<string, number>();
+const recipientByKind: Record<string, string> = {
+  general: "info@astravoxtech.uk",
+  technology: "info@astravoxtech.uk",
+  education: "info@astravoxtech.uk",
+  "digital-growth": "info@astravoxtech.uk",
+  careers: "info@astravoxtech.uk",
+};
+
+const subjectByKind: Record<string, string> = {
+  general: "Astravox website enquiry",
+  technology: "Astravox Technology enquiry",
+  education: "Astravox Education enquiry",
+  "digital-growth": "Astravox Digital Growth enquiry",
+  careers: "Mobile Software Engineer application",
+};
 
 function sanitise(value: unknown) {
   return String(value ?? "")
@@ -42,6 +57,49 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please include a short message." }, { status: 400 });
   }
 
-  console.info("Astravox enquiry received", Object.fromEntries(entries));
+  const enquiry = Object.fromEntries(entries);
+  const kind = sanitise((body as Record<string, unknown>).kind || "general");
+  const to = recipientByKind[kind] || recipientByKind.general;
+  const subject = subjectByKind[kind] || subjectByKind.general;
+  const text = entries
+    .filter(([key]) => key !== "website" && key !== "Consent")
+    .map(([key, value]) => `${key}: ${value || "-"}`)
+    .join("\n");
+
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || "Astravox Website <onboarding@resend.dev>";
+
+  if (resendApiKey) {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to,
+        subject,
+        text,
+        reply_to: entries.find(([key]) => key.toLowerCase().includes("email"))?.[1],
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Astravox enquiry email failed", await response.text());
+      return NextResponse.json(
+        { error: "Email delivery failed. Please email info@astravoxtech.uk directly." },
+        { status: 502 },
+      );
+    }
+  } else {
+    console.info("Astravox enquiry received without email provider", enquiry);
+    return NextResponse.json(
+      { error: "Email delivery is being configured. Please email info@astravoxtech.uk directly." },
+      { status: 503 },
+    );
+  }
+
+  console.info("Astravox enquiry emailed", enquiry);
   return NextResponse.json({ ok: true });
 }
