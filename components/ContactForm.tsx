@@ -2,16 +2,25 @@
 
 import { FormEvent, useState } from "react";
 
-type FormKind = "general" | "technology" | "education" | "digital-growth";
+type FormKind = "general" | "technology" | "education" | "digital-growth" | "careers";
 
 const fields = {
   general: ["Name", "Email", "Phone", "Company or university", "Service category"],
   technology: ["Name", "Business email", "Company", "Project type", "Estimated budget range", "Expected timeline"],
   education: ["Student name", "Email", "Current country", "Current qualification", "Intended study level", "Preferred destination", "Intended intake"],
   "digital-growth": ["Name", "Business email", "Company", "Website", "Main marketing goal", "Required service", "Approximate monthly budget range"],
+  careers: ["Full Name", "Email", "Phone", "LinkedIn URL", "GitHub/Portfolio URL"],
 };
 
-export function ContactForm({ kind = "general" }: { kind?: FormKind }) {
+export function ContactForm({
+  kind = "general",
+  messageLabel = "Message",
+  submitLabel = "Send Enquiry",
+}: {
+  kind?: FormKind;
+  messageLabel?: string;
+  submitLabel?: string;
+}) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -40,12 +49,12 @@ export function ContactForm({ kind = "general" }: { kind?: FormKind }) {
         {fields[kind].map((label) => (
           <div className="field" key={label}>
             <label htmlFor={label.toLowerCase().replaceAll(" ", "-")}>{label}</label>
-            <input id={label.toLowerCase().replaceAll(" ", "-")} name={label} required={label.includes("Name") || label.includes("Email")} />
+            <input id={label.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-")} name={label} required={label.includes("Name") || label.includes("Email")} />
           </div>
         ))}
       </div>
       <div className="field">
-        <label htmlFor={`${kind}-message`}>Message</label>
+        <label htmlFor={`${kind}-message`}>{messageLabel}</label>
         <textarea id={`${kind}-message`} name="Message" required />
       </div>
       <label className="check">
@@ -54,7 +63,7 @@ export function ContactForm({ kind = "general" }: { kind?: FormKind }) {
         sensitive documents through this form.
       </label>
       <button className="button button-primary" disabled={status === "loading"} type="submit">
-        {status === "loading" ? "Sending..." : "Send Enquiry"}
+        {status === "loading" ? "Sending..." : submitLabel}
       </button>
       {status === "success" && <p className="muted">Thank you. Your enquiry has been received.</p>}
       {status === "error" && <p className="muted">Something went wrong. Please try again.</p>}

@@ -15,7 +15,7 @@ export default function ContactPage() {
       <PageBanner
         eyebrow="Contact"
         title="Start a focused conversation"
-        text="Tell Astravox what you need help with. Use the form or email info@astravoxtech.uk and we will respond with the right next step."
+        text={`Tell Astravox what you need help with. Use the form or email ${siteConfig.email} and we will respond with the right next step.`}
         crumbs={[["Contact"]]}
       />
       <section className="section">
@@ -26,7 +26,12 @@ export default function ContactPage() {
               <h2 className="h3">Contact details</h2>
               <ul className="list">
                 <li>
-                  Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+                  General enquiries:{" "}
+                  <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+                </li>
+                <li>
+                  Careers:{" "}
+                  <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>
                 </li>
                 <li>Service area: {siteConfig.serviceArea}</li>
                 <li>Technology, education and digital growth enquiries welcome</li>

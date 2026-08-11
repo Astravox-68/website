@@ -3,6 +3,7 @@ export const siteConfig = {
   legalName: "",
   registrationNumber: "",
   email: "info@astravoxtech.uk",
+  careersEmail: "careers@astravoxtech.uk",
   phone: "",
   whatsapp: "",
   address: "",
@@ -25,6 +26,7 @@ export const navigation = [
   { label: "Digital Growth", href: "/digital-growth" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 

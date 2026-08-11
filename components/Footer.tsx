@@ -6,6 +6,7 @@ const companyLinks = [
   ["About", "/about"],
   ["Case Studies", "/case-studies"],
   ["Insights", "/insights"],
+  ["Careers", "/careers"],
   ["Contact", "/contact"],
   ["Privacy Policy", "/privacy"],
   ["Cookie Policy", "/cookies"],
@@ -27,6 +28,9 @@ export function Footer() {
           <p className="muted">Service area: {siteConfig.serviceArea}.</p>
           <p className="muted">
             Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          </p>
+          <p className="muted">
+            Careers: <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>
           </p>
         </div>
         {Object.values(divisions).map((division) => (
