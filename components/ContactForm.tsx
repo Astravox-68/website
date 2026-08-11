@@ -22,22 +22,31 @@ export function ContactForm({
   submitLabel?: string;
 }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
+    setErrorMessage("");
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kind, ...data }),
-    });
-    if (response.ok) {
-      setStatus("success");
-      form.reset();
-      window.dispatchEvent(new CustomEvent("astravox:event", { detail: `${kind}_enquiry_submitted` }));
-    } else {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind, ...data }),
+      });
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+        window.dispatchEvent(new CustomEvent("astravox:event", { detail: `${kind}_enquiry_submitted` }));
+      } else {
+        const result = await response.json().catch(() => null);
+        setErrorMessage(result?.error || "Please check the required fields and try again.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMessage("Network error. Please email careers@astravoxtech.uk if the form does not send.");
       setStatus("error");
     }
   }
@@ -66,7 +75,13 @@ export function ContactForm({
         {status === "loading" ? "Sending..." : submitLabel}
       </button>
       {status === "success" && <p className="muted">Thank you. Your enquiry has been received.</p>}
-      {status === "error" && <p className="muted">Something went wrong. Please try again.</p>}
+      {status === "error" && <p className="muted">{errorMessage}</p>}
+      {kind === "careers" && (
+        <p className="muted">
+          If the form does not send, email your application and CV to{" "}
+          <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
+        </p>
+      )}
     </form>
   );
 }
