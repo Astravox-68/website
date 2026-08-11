@@ -168,7 +168,7 @@ export default function CareersPage() {
               <h2 className="h3">CV and recruitment email</h2>
               <p className="muted">
                 The form sends your application details to{" "}
-                <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>{" "}
+                <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>.{" "}
                 Please email your CV separately with the subject line "Mobile Software Engineer application".
               </p>
             </div>
