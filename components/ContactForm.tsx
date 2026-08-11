@@ -56,6 +56,19 @@ export function ContactForm({
       return;
     }
 
+    if (kind === "careers") {
+      const body = Object.entries({ kind, ...data })
+        .filter(([key]) => key !== "website" && key !== "Consent")
+        .map(([key, value]) => `${key}: ${String(value || "").trim() || "-"}`)
+        .join("\n");
+      window.location.href = `mailto:careers@astravoxtech.uk?subject=${encodeURIComponent(
+        "Mobile Software Engineer application",
+      )}&body=${encodeURIComponent(body)}`;
+      setStatus("success");
+      window.dispatchEvent(new CustomEvent("astravox:event", { detail: "careers_application_started" }));
+      return;
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -111,7 +124,9 @@ export function ContactForm({
       </button>
       {status === "success" && (
         <p className="muted">
-          Thank you. Your enquiry has been sent to {recipientByKind[kind]}.
+          {kind === "careers"
+            ? "Your email app should open now. Please attach your CV and send the application to careers@astravoxtech.uk."
+            : `Thank you. Your enquiry has been sent to ${recipientByKind[kind]}.`}
         </p>
       )}
       {status === "error" && <p className="muted">{errorMessage}</p>}
