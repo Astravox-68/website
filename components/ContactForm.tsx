@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { EmailLink } from "@/components/EmailLink";
 
 type FormKind = "general" | "technology" | "education" | "digital-growth" | "careers";
 
@@ -109,8 +110,7 @@ export function ContactForm({
         <div className="field">
           <label>CV Upload</label>
           <p className="muted">
-            Please email your CV to{" "}
-            <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
+            Please email your CV to <EmailLink email="careers@astravoxtech.uk" />.
           </p>
         </div>
       )}
@@ -132,8 +132,7 @@ export function ContactForm({
       {status === "error" && <p className="muted">{errorMessage}</p>}
       {kind === "careers" && (
         <p className="muted">
-          Please email your CV separately to{" "}
-          <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
+          Please email your CV separately to <EmailLink email="careers@astravoxtech.uk" />.
         </p>
       )}
     </form>

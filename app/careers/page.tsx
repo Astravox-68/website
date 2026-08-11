@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
+import { EmailLink } from "@/components/EmailLink";
 import { PageBanner, SectionHeading } from "@/components/Sections";
 import { siteConfig } from "@/lib/site";
 
@@ -158,14 +159,14 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Apply"
               title="Apply for Mobile Software Engineer"
-              text="Complete the form to send your application details to careers@astravoxtech.uk. Please email your CV separately."
+              text="Complete the form to prepare your application for the recruitment inbox. Please email your CV separately."
             />
             <div className="card" style={{ padding: "1.4rem" }}>
               <h2 className="h3">CV and recruitment email</h2>
               <p className="muted">
                 The form sends your application details to{" "}
-                <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>.{" "}
-                Please email your CV to careers@astravoxtech.uk with the subject line "Mobile Software Engineer application".
+                <EmailLink email={siteConfig.careersEmail} />. Please email your CV to{" "}
+                <EmailLink email={siteConfig.careersEmail} /> with the subject line "Mobile Software Engineer application".
               </p>
             </div>
           </div>

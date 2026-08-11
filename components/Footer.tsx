@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/BrandMark";
+import { EmailLink } from "@/components/EmailLink";
 import { divisions, siteConfig } from "@/lib/site";
 
 const companyLinks = [
@@ -27,10 +28,10 @@ export function Footer() {
           </p>
           <p className="muted">Service area: {siteConfig.serviceArea}.</p>
           <p className="muted">
-            General enquiries: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            General enquiries: <EmailLink email={siteConfig.email} />
           </p>
           <p className="muted">
-            Recruitment: <a href={`mailto:${siteConfig.careersEmail}`}>{siteConfig.careersEmail}</a>
+            Recruitment: <EmailLink email={siteConfig.careersEmail} />
           </p>
         </div>
         {Object.values(divisions).map((division) => (
@@ -59,7 +60,7 @@ export function Footer() {
         <p className="muted">
           © {siteConfig.copyrightYear} Astravox. Glasgow-based support for
           technology, education and digital growth enquiries. For contact, email{" "}
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+          <EmailLink email={siteConfig.email} />.
         </p>
       </div>
     </footer>
