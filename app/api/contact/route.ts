@@ -33,13 +33,13 @@ export async function POST(request: Request) {
     sanitise(value),
   ]);
   const hasEmail = entries.some(([key, value]) => key.toLowerCase().includes("email") && value.includes("@"));
-  const hasMessage = entries.some(([key, value]) => key.toLowerCase() === "message" && value.length > 2);
+  const hasMessage = entries.some(([key, value]) => key.toLowerCase() === "message" && value.length > 0);
 
-  if (!hasEmail || !hasMessage) {
-    return NextResponse.json(
-      { error: "Please include a valid email address and a short message." },
-      { status: 400 },
-    );
+  if (!hasEmail) {
+    return NextResponse.json({ error: "Please include a valid email address." }, { status: 400 });
+  }
+  if (!hasMessage) {
+    return NextResponse.json({ error: "Please include a short message." }, { status: 400 });
   }
 
   console.info("Astravox enquiry received", Object.fromEntries(entries));
