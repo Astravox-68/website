@@ -17,7 +17,7 @@ const recipientByKind: Record<FormKind, string> = {
   technology: "info@astravoxtech.uk",
   education: "info@astravoxtech.uk",
   "digital-growth": "info@astravoxtech.uk",
-  careers: "careers@astravoxtech.uk",
+  careers: "info@astravoxtech.uk",
 };
 
 const subjectByKind: Record<FormKind, string> = {
@@ -102,7 +102,7 @@ export function ContactForm({
       {kind === "careers" && (
         <p className="muted">
           The form opens an email draft. Attach your CV there, or email your application and CV to{" "}
-          <a href="mailto:careers@astravoxtech.uk">careers@astravoxtech.uk</a>.
+          <a href="mailto:info@astravoxtech.uk">info@astravoxtech.uk</a>.
         </p>
       )}
     </form>
