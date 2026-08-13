@@ -63,7 +63,7 @@ export function ContactForm({
         .map(([key, value]) => `${key}: ${String(value || "").trim() || "-"}`)
         .join("\n");
       window.location.href = `mailto:careers@astravoxtech.uk?subject=${encodeURIComponent(
-        "Mobile Software Engineer application",
+        "Mobile Engineer application",
       )}&body=${encodeURIComponent(body)}`;
       setStatus("success");
       window.dispatchEvent(new CustomEvent("astravox:event", { detail: "careers_application_started" }));

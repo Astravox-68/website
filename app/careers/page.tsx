@@ -5,11 +5,13 @@ import { PageBanner, SectionHeading } from "@/components/Sections";
 import { siteConfig } from "@/lib/site";
 
 const vacancy = {
-  title: "Mobile Software Engineer",
-  location: "Remote (United Kingdom)",
+  title: "Mobile Engineer",
+  descriptionTitle: "Mobile Software Engineer",
+  location: "London SW20 0AG",
+  workLocation: "Hybrid work",
   employmentType: "Part-time",
   hours: "20 hours per week",
-  salary: "£18.50–£22.00 per hour",
+  salary: "£18.50–£20.00 an hour",
   responsibilities: [
     "Develop Android mobile applications using Kotlin.",
     "Build modern mobile user interfaces using Jetpack Compose or similar tools.",
@@ -46,10 +48,10 @@ const vacancy = {
     "Node.js.",
   ],
   offer: [
-    "Remote working.",
+    "Hybrid remote working in London SW20 0AG.",
     "Flexible part-time arrangement.",
     "20 hours per week.",
-    "Hourly pay between £18.50 and £22.00.",
+    "Hourly pay between £18.50 and £20.00.",
     "Opportunity to work on mobile, cloud, AI and web-related projects.",
     "Exposure to modern development tools and practices.",
     "Professional growth as the company expands.",
@@ -81,7 +83,7 @@ export default function CareersPage() {
   const jobDescription =
     "Astravox Tech is hiring a Mobile Software Engineer to help design, build and improve mobile applications for client and internal software projects. The role is mainly focused on Android development using Kotlin, with opportunities to contribute to wider mobile, cloud and cross-platform work where needed.";
   const roleSummary =
-    "This is a remote, part-time position suitable for someone who enjoys building practical software, solving technical problems and working with modern mobile technologies. As Astravox Tech grows, there may be scope for the role to develop into a full-time position.";
+    "This is a hybrid remote, part-time position suitable for someone who enjoys building practical software, solving technical problems and working with modern mobile technologies. As Astravox Tech grows, there may be scope for the role to develop into a full-time position.";
   const roleOverview =
     "You will work on mobile application development from planning through to delivery, including UI development, API integration, testing, debugging and ongoing improvement of existing applications. You will collaborate with other developers and designers to produce reliable, maintainable and user-friendly mobile products.";
   const howToApply =
@@ -101,6 +103,8 @@ export default function CareersPage() {
       ...vacancy.desirableSkills,
       "What Astravox Tech Offers:",
       ...vacancy.offer,
+      "Pay: £18.50-£20.00 per hour",
+      "Work Location: Hybrid remote in London SW20 0AG",
       "How to Apply:",
       howToApply,
     ].join("\n"),
@@ -111,10 +115,14 @@ export default function CareersPage() {
       name: "Astravox Tech",
       sameAs: siteConfig.siteUrl,
     },
-    jobLocationType: "TELECOMMUTE",
-    applicantLocationRequirements: {
-      "@type": "Country",
-      name: "United Kingdom",
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "London",
+        postalCode: "SW20 0AG",
+        addressCountry: "GB",
+      },
     },
     baseSalary: {
       "@type": "MonetaryAmount",
@@ -122,7 +130,7 @@ export default function CareersPage() {
       value: {
         "@type": "QuantitativeValue",
         minValue: 18.5,
-        maxValue: 22,
+        maxValue: 20,
         unitText: "HOUR",
       },
     },
@@ -145,15 +153,17 @@ export default function CareersPage() {
           <SectionHeading
             eyebrow="Open vacancy"
             title={vacancy.title}
-            text="A remote, part-time engineering role focused on Android development, API integration and practical mobile product delivery."
+            text="A hybrid work, part-time engineering role focused on Android development, API integration and practical mobile product delivery."
           />
           <article className="card career-card">
             <div className="career-meta" aria-label="Job details">
               <span>{vacancy.location}</span>
+              <span>{vacancy.workLocation}</span>
               <span>{vacancy.employmentType}</span>
               <span>{vacancy.hours}</span>
               <span>{vacancy.salary}</span>
             </div>
+            <h2 className="h3">{vacancy.descriptionTitle}</h2>
             <p className="muted">{jobDescription}</p>
             <p className="muted">{roleSummary}</p>
             <div className="career-actions">
@@ -186,7 +196,7 @@ export default function CareersPage() {
           <div>
             <SectionHeading
               eyebrow="Apply"
-              title="Apply for Mobile Software Engineer"
+              title="Apply for Mobile Engineer"
               text={howToApply}
             />
             <div className="card" style={{ padding: "1.4rem" }}>
@@ -194,7 +204,7 @@ export default function CareersPage() {
               <p className="muted">
                 The form sends your application details to{" "}
                 <EmailLink email={siteConfig.careersEmail} />. Please email your CV to{" "}
-                <EmailLink email={siteConfig.careersEmail} /> with the subject line "Mobile Software Engineer application".
+                <EmailLink email={siteConfig.careersEmail} /> with the subject line "Mobile Engineer application".
               </p>
             </div>
           </div>
