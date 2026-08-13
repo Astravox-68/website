@@ -11,37 +11,49 @@ const vacancy = {
   hours: "20 hours per week",
   salary: "£18.50–£22.00 per hour",
   responsibilities: [
-    "Develop Android applications using Kotlin.",
-    "Build modern UI using Jetpack Compose.",
-    "Maintain existing applications.",
-    "Integrate REST APIs.",
-    "Participate in architecture discussions.",
-    "Write clean, maintainable code.",
-    "Work with Git and Agile methodologies.",
-    "Collaborate with designers and backend developers.",
+    "Develop Android mobile applications using Kotlin.",
+    "Build modern mobile user interfaces using Jetpack Compose or similar tools.",
+    "Maintain, update and improve existing mobile applications.",
+    "Integrate mobile apps with REST APIs and backend services.",
+    "Support technical planning and application architecture decisions.",
+    "Write clean, readable and maintainable code.",
+    "Test, debug and optimise application performance.",
+    "Use Git for version control and team collaboration.",
+    "Work with designers, backend developers and other stakeholders.",
+    "Follow Agile software development processes.",
   ],
   requiredSkills: [
-    "Kotlin",
-    "Android SDK",
-    "Jetpack Compose",
-    "MVVM",
-    "REST APIs",
-    "Git",
-    "Problem solving",
-    "Communication skills",
+    "Experience developing Android applications with Kotlin.",
+    "Good knowledge of the Android SDK.",
+    "Understanding of Jetpack Compose or modern Android UI development.",
+    "Familiarity with MVVM, Clean Architecture or similar software patterns.",
+    "Experience connecting applications to REST APIs.",
+    "Ability to use Git in a collaborative development environment.",
+    "Strong problem-solving skills.",
+    "Clear written and verbal communication.",
   ],
   desirableSkills: [
-    "Flutter",
-    "iOS",
-    "Firebase",
-    "AWS",
-    "Google Cloud",
-    "Docker",
-    "CI/CD",
-    "AI integrations",
-    "Python",
-    "React",
-    "Node.js",
+    "Flutter or cross-platform mobile development.",
+    "iOS development.",
+    "Firebase.",
+    "AWS, Google Cloud or Microsoft Azure.",
+    "Docker.",
+    "CI/CD pipelines.",
+    "AI or LLM-based integrations.",
+    "SQL, data processing or analytics.",
+    "Python.",
+    "React.",
+    "Node.js.",
+  ],
+  offer: [
+    "Remote working.",
+    "Flexible part-time arrangement.",
+    "20 hours per week.",
+    "Hourly pay between £18.50 and £22.00.",
+    "Opportunity to work on mobile, cloud, AI and web-related projects.",
+    "Exposure to modern development tools and practices.",
+    "Professional growth as the company expands.",
+    "Possible progression into a full-time role in the future.",
   ],
 };
 
@@ -67,7 +79,13 @@ function ListSection({ title, items }: { title: string; items: string[] }) {
 
 export default function CareersPage() {
   const jobDescription =
-    "Join Astravox Tech and help build modern software solutions across mobile, cloud, AI and digital platforms. We are looking for passionate engineers who enjoy solving real-world problems.";
+    "Astravox Tech is hiring a Mobile Software Engineer to help design, build and improve mobile applications for client and internal software projects. The role is mainly focused on Android development using Kotlin, with opportunities to contribute to wider mobile, cloud and cross-platform work where needed.";
+  const roleSummary =
+    "This is a remote, part-time position suitable for someone who enjoys building practical software, solving technical problems and working with modern mobile technologies. As Astravox Tech grows, there may be scope for the role to develop into a full-time position.";
+  const roleOverview =
+    "You will work on mobile application development from planning through to delivery, including UI development, API integration, testing, debugging and ongoing improvement of existing applications. You will collaborate with other developers and designers to produce reliable, maintainable and user-friendly mobile products.";
+  const howToApply =
+    "Please apply through the form and include details of your relevant Android or mobile development experience. If possible, include links to a GitHub profile, portfolio, published app or examples of previous work.";
 
   const jobPosting = {
     "@context": "https://schema.org",
@@ -77,10 +95,14 @@ export default function CareersPage() {
       jobDescription,
       "Key Responsibilities:",
       ...vacancy.responsibilities,
-      "Required Skills:",
+      "Essential Skills and Experience:",
       ...vacancy.requiredSkills,
-      "Desirable Skills:",
+      "Additional Skills That Would Be Helpful:",
       ...vacancy.desirableSkills,
+      "What Astravox Tech Offers:",
+      ...vacancy.offer,
+      "How to Apply:",
+      howToApply,
     ].join("\n"),
     datePosted: "2026-08-11",
     employmentType: "PART_TIME",
@@ -123,7 +145,7 @@ export default function CareersPage() {
           <SectionHeading
             eyebrow="Open vacancy"
             title={vacancy.title}
-            text="A remote part-time engineering role focused on Android, mobile product quality and practical software delivery."
+            text="A remote, part-time engineering role focused on Android development, API integration and practical mobile product delivery."
           />
           <article className="card career-card">
             <div className="career-meta" aria-label="Job details">
@@ -133,6 +155,7 @@ export default function CareersPage() {
               <span>{vacancy.salary}</span>
             </div>
             <p className="muted">{jobDescription}</p>
+            <p className="muted">{roleSummary}</p>
             <div className="career-actions">
               <a className="button button-primary" href="#apply-mobile-software-engineer">
                 Apply Now
@@ -147,9 +170,14 @@ export default function CareersPage() {
 
       <section className="section section-soft">
         <div className="container career-detail-grid">
-          <ListSection title="Responsibilities" items={vacancy.responsibilities} />
-          <ListSection title="Required Skills" items={vacancy.requiredSkills} />
-          <ListSection title="Desirable Skills" items={vacancy.desirableSkills} />
+          <section className="career-list">
+            <h3 className="h3">Role Overview</h3>
+            <p className="muted">{roleOverview}</p>
+          </section>
+          <ListSection title="Key Duties" items={vacancy.responsibilities} />
+          <ListSection title="Essential Skills and Experience" items={vacancy.requiredSkills} />
+          <ListSection title="Additional Skills That Would Be Helpful" items={vacancy.desirableSkills} />
+          <ListSection title="What Astravox Tech Offers" items={vacancy.offer} />
         </div>
       </section>
 
@@ -159,7 +187,7 @@ export default function CareersPage() {
             <SectionHeading
               eyebrow="Apply"
               title="Apply for Mobile Software Engineer"
-              text="Complete the form to prepare your application for the recruitment inbox. Please email your CV separately."
+              text={howToApply}
             />
             <div className="card" style={{ padding: "1.4rem" }}>
               <h2 className="h3">CV and recruitment email</h2>
